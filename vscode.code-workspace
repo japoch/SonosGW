@@ -1,0 +1,32 @@
+{
+    "folders": [
+        {
+            "path": "."
+        }
+    ],
+    "settings": {
+        "sshfs.configs": [
+            {
+                "name": "dashboard_pi_2",
+                "host": "192.168.178.46",
+                "username": "pi",
+                "password": "ktw12345#",
+                "root": "/home/pi/Dashboard"
+            },
+            {
+                "name": "dashboard_pi_1",
+                "username": "pi",
+                "password": "ktw12345#",
+                "host": "192.168.30.132",
+                "root": "/home/pi/Dashboard"
+            },
+            {
+                "name": "rpi_dev",
+                "host": "192.168.178.75",
+                "root": "/home/pi",
+                "username": "pi",
+                "password": "password"
+            }
+        ]
+    }
+}
