@@ -2,21 +2,29 @@ from soco import SoCo, discover
 
 if __name__ == '__main__':
     for zone in discover():
-        print(zone.player_name, zone.ip_address)
+        print(f'Playername={zone.player_name} IP={zone.ip_address}')
 
-    sonos = SoCo(zone.ip_address) # Pass in the IP of your Sonos speaker
-    # You could use the discover function instead, if you don't know the IP
+    sonos = SoCo(zone.ip_address)
 
-    # Pass in a URI to a media file to have it streamed through the Sonos
-    # speaker
+    #print(f'Shares={sonos.music_library.list_library_shares()}')
+    #albums = sonos.music_library.get_music_library_information('playlists')
+    #print(albums)
+
+    #sonos.play_uri('http://192.168.178.39:5901/stream/swyh.mp3')
     #sonos.play_uri('http://ia801402.us.archive.org/20/items/TenD2005-07-16.flac16/TenD2005-07-16t10Wonderboy.mp3')
-    sonos.play_uri('http://192.168.178.39:5901/stream/swyh.mp3')
+    # FM4.ORF.AT
+    sonos.play_uri('http://mp3stream1.apasf.apa.at:8000', title='FM4', force_radio=True)
 
     track = sonos.get_current_track_info()
+    print(f'URI={track["uri"]}')
 
-    print(track['title'])
-
-    sonos.pause()
-
-    # Play a stopped or paused track
+    #sonos.pause()
     sonos.play()
+
+    sonos.volume = 30
+    sonos.bass = 0
+    sonos.treble = 0
+    sonos.status_light = True
+    print(f'Volume={sonos.volume}')
+    print(f'Bass={sonos.bass}')
+    print(f'Treble={sonos.treble}')
