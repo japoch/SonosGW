@@ -1,5 +1,5 @@
 @echo off
-set "PYTHON_DIR=C:\Program Files (x86)\Python36-32"
+set "PYTHON_DIR=C:\Python38_64"
 set "PYTHON_BIN=%PYTHON_DIR%\python.exe"
 set "PYARMOR_BIN=%PYTHON_DIR%\Scripts\pyarmor.exe"
 set "PYINSTALLER_BIN=%PYTHON_DIR%\Scripts\pyinstaller.exe"
