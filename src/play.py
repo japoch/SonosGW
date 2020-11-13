@@ -21,7 +21,7 @@ if __name__ == '__main__':
     #sonos.pause()
     sonos.play()
 
-    sonos.volume = 30
+    sonos.volume = 45
     sonos.bass = 0
     sonos.treble = 0
     sonos.status_light = True
