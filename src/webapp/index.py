@@ -1,18 +1,13 @@
 import time
 import hashlib
 import json
-
 import requests
 from flask import Flask, render_template, url_for
-
 from soco import SoCo
 
 app = Flask(__name__)
-
 app.config.from_pyfile("settings.py")
-
 sonos = SoCo(app.config["SPEAKER_IP"])
-
 
 def gen_sig():
     return hashlib.md5(
@@ -22,7 +17,6 @@ def gen_sig():
             + repr(int(time.time()))
         ).encode("utf-8")
     ).hexdigest()
-
 
 def get_track_image(artist, album):
     blank_image = url_for("static", filename="img/blank.jpg")
@@ -50,30 +44,24 @@ def get_track_image(artist, album):
 
     result = json.loads(req.content)
     try:
-        return result["matchResponse"]["results"][0]["album"]["images"][0]["front"][3][
-            "url"
-        ]
+        return result["matchResponse"]["results"][0]["album"]["images"][0]["front"][3]["url"]
     except (KeyError, IndexError):
         return blank_image
-
 
 @app.route("/play")
 def play():
     sonos.play()
     return "Ok"
 
-
 @app.route("/pause")
 def pause():
     sonos.pause()
     return "Ok"
 
-
 @app.route("/next")
 def next():
     sonos.next()
     return "Ok"
-
 
 @app.route("/previous")
 def previous():
@@ -95,11 +83,30 @@ def volume_down():
     sonos.set_relative_volume(-10)
     return "Ok"
 
+@app.route("/volume_mute")
+def volume_mute():
+    sonos.mute = False if sonos.mute else True
+    return "Ok"
+
+@app.route("/track_01")
+def track_01():
+    sonos.play_uri('http://mp3stream1.apasf.apa.at:8000', title='FM4.ORF.AT', force_radio=True)
+    return "Ok"
+
+@app.route("/track_02")
+def track_02():
+    sonos.play_uri('http://streams.radiopsr.de/psr-live/mp3-192/mediaplayer', title='Radio PSR Live', force_radio=True)
+    return "Ok"
+
+@app.route("/track_03")
+def track_03():
+    sonos.play_uri('http://nrj.de/sachsen', title='Energy Sachsen', force_radio=True)
+    return "Ok"
+
 @app.route("/info-light")
 def info_light():
     track = sonos.get_current_track_info()
     return json.dumps(track)
-
 
 @app.route("/info")
 def info():
@@ -107,13 +114,11 @@ def info():
     track["image"] = get_track_image(track["artist"], track["album"])
     return json.dumps(track)
 
-
 @app.route("/")
 def index():
     track = sonos.get_current_track_info()
     track["image"] = get_track_image(track["artist"], track["album"])
     return render_template("index.html", track=track)
 
-
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", debug=True)
+    app.run(host="0.0.0.0", port="5000", debug=True)

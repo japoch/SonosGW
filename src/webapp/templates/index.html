@@ -25,8 +25,14 @@
                     <button id="next" class="btn"><i class="icon-forward"></i> Next</button>
                 </div>
                 <div class="row">
-                    <button id="volume_down" class="btn"><i class="icon-backward"></i> Volume-</button>
-                    <button id="volume_up" class="btn"><i class="icon-forward"></i> Volume+</button>
+                    <button id="volume_down" class="btn"><i class="icon-volume-down"></i> Volume-</button>
+                    <button id="volume_up" class="btn"><i class="icon-volume-up"></i> Volume+</button>
+                    <button id="volume_mute" class="btn"><i class="icon-volume-off"></i> Mute</button>
+                </div>
+                <div class="row">
+                    <button id="track_01" class="btn"><i class="icon-list"></i> FM4.ORF.AT</button>
+                    <button id="track_02" class="btn"><i class="icon-list"></i> Radio PSR Live</button>
+                    <button id="track_03" class="btn"><i class="icon-list"></i> Energy Sachsen</button>
                 </div>
             </div>
         </div>
@@ -39,7 +45,7 @@
             var playing = true;
 
             function checkChange() {
-                $.getJSON('http://127.0.0.1:5000/info-light').done(function(data) {
+                $.getJSON('/info-light').done(function(data) {
                     $('#track-title').text(data['title']);
 
                     if (currTrack != data['title'])
@@ -50,7 +56,7 @@
             }
 
             function loadData() {
-                $.getJSON('http://127.0.0.1:5000/info').done(function(data) {
+                $.getJSON('/info').done(function(data) {
                     $('#track-title').text(data['title']);
                     $('#track-artist').text(data['artist']);
                     $('#track-album').text(data['album']);
@@ -74,25 +80,25 @@
                 setInterval("checkChange()", 1000);
 
                 $('#next').click(function() {
-                    $.ajax('http://127.0.0.1:5000/next');
+                    $.ajax('/next');
                     loadData();
                 });
 
                 $('#previous').click(function() {
-                    $.ajax('http://127.0.0.1:5000/previous');
+                    $.ajax('/previous');
                     loadData();
                 });
 
                 $('#pause').click(function() {
                     if (playing == true)
                     {
-                        $.ajax('http://127.0.0.1:5000/pause');
+                        $.ajax('/pause');
                         playing = false;
 
                         $('#pause').html('<i class="icon-play"></i> Play');
                     }
                     else {
-                        $.ajax('http://127.0.0.1:5000/play');
+                        $.ajax('/play');
                         playing = true;
 
                         $('#pause').html('<i class="icon-pause"></i> Pause');
@@ -100,12 +106,32 @@
                 });
 
                 $('#volume_down').click(function () {
-                    $.ajax('http://127.0.0.1:5000/volume_down');
+                    $.ajax('/volume_down');
                     loadData();
                 });
 
                 $('#volume_up').click(function () {
-                    $.ajax('http://127.0.0.1:5000/volume_up');
+                    $.ajax('/volume_up');
+                    loadData();
+                });
+
+                $('#volume_mute').click(function () {
+                    $.ajax('/volume_mute');
+                    loadData();
+                });
+
+                $('#track_01').click(function () {
+                    $.ajax('/track_01');
+                    loadData();
+                });
+
+                $('#track_02').click(function () {
+                    $.ajax('/track_02');
+                    loadData();
+                });
+
+                $('#track_03').click(function () {
+                    $.ajax('/track_03');
                     loadData();
                 });
 
