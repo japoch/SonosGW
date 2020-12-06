@@ -85,7 +85,12 @@ def volume_down():
 
 @app.route("/volume_mute")
 def volume_mute():
-    sonos.mute = False if sonos.mute else True
+    sonos.mute = True
+    return "Ok"
+
+@app.route("/volume_unmute")
+def volume_unmute():
+    sonos.mute = False
     return "Ok"
 
 @app.route("/track_01")

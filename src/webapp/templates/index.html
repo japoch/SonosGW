@@ -43,6 +43,7 @@
         <script type="text/javascript">
             var currTrack = '';
             var playing = true;
+            var mute = false;
 
             function checkChange() {
                 $.getJSON('/info-light').done(function(data) {
@@ -107,32 +108,45 @@
 
                 $('#volume_down').click(function () {
                     $.ajax('/volume_down');
-                    loadData();
+                    if (mute == true) {
+                        $.ajax('/volume_unmute');
+                        mute = false;
+                        $('#volume_mute').html('<i class="icon-volume-off"></i> Mute');
+                    }
                 });
 
                 $('#volume_up').click(function () {
                     $.ajax('/volume_up');
-                    loadData();
+                    if (mute == true) {
+                        $.ajax('/volume_unmute');
+                        mute = false;
+                        $('#volume_mute').html('<i class="icon-volume-off"></i> Mute');
+                    }
                 });
 
                 $('#volume_mute').click(function () {
-                    $.ajax('/volume_mute');
-                    loadData();
+                    if (mute == true) {
+                        $.ajax('/volume_unmute');
+                        mute = false;
+                        $('#volume_mute').html('<i class="icon-volume-off"></i> Mute');
+                    }
+                    else {
+                        $.ajax('/volume_mute');
+                        mute = true;
+                        $('#volume_mute').html('<i class="icon-volume-off"></i> Unmute');
+                    }
                 });
 
                 $('#track_01').click(function () {
                     $.ajax('/track_01');
-                    loadData();
                 });
 
                 $('#track_02').click(function () {
                     $.ajax('/track_02');
-                    loadData();
                 });
 
                 $('#track_03').click(function () {
                     $.ajax('/track_03');
-                    loadData();
                 });
 
             });
