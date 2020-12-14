@@ -1,36 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>SoCo - Sonos Web Controller</title>
+{% extends "base.html" %}
 
-        <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
-        <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
-        <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
-    </head>
-    <body class="container">
+{% block app_content %}
         <div class="row">
-            <div class="span6">
+            <div class="panel panel-default">
                 <h1 id="track-title"></h1>
                 <h2 id="track-artist"></h2>
                 <h2 id="track-album"></h2>
-                <div class="row">
-                    <button id="previous" class="btn-large"><i class="icon-backward"></i> Previous</button>
-                    <button id="pause" class="btn-large"><i class="icon-pause"></i> Pause</button>
-                    <button id="next" class="btn-large"><i class="icon-forward"></i> Next</button>
-                </div>
-                <div class="row">
-                    <button id="volume_down" class="btn-large"><i class="icon-volume-down"></i> Volume-</button>
-                    <button id="volume_up" class="btn-large"><i class="icon-volume-up"></i> Volume+</button>
-                    <button id="volume_mute" class="btn-large"><i class="icon-volume-off"></i> Mute</button>
-                </div>
-                <div class="row">
-                    <button id="track_01" class="btn-large"><i class="icon-list"></i> FM4.ORF.AT</button>
-                    <button id="track_02" class="btn-large"><i class="icon-list"></i> Radio PSR Live</button>
-                    <button id="track_03" class="btn-large"><i class="icon-list"></i> Energy Sachsen</button>
-                </div>
             </div>
-        </div>
+            <div class="btn-group btn-group-lg" role="group">
+                <button class="btn" id="previous"><span class="glyphicon glyphicon-step-backward" aria-hidden="true"></span> Previous</button>
+                <button class="btn" id="pause"><span class="glyphicon glyphicon-pause" aria-hidden="true"></span> Pause</button>
+                <button class="btn" id="next"><span class="glyphicon glyphicon-step-forward" aria-hidden="true"></span> Next</button>
+            </div>
+            <div class="btn-group btn-group-lg" role="group">
+                <button class="btn" id="volume_down"><span class="glyphicon glyphicon-volume-down" aria-hidden="true"></span> Volume-</button>
+                <button class="btn" id="volume_up"><span class="glyphicon glyphicon-volume-up" aria-hidden="true"></span> Volume+</button>
+                <button class="btn" id="volume_mute"><span class="glyphicon glyphicon-volume-off" aria-hidden="true"></span> Mute</button>
+            </div>
+         </div>
 
         <div class="row">
             <div id="info" class="span12"></div>
@@ -40,10 +27,10 @@
             </div>
             {% endif %}
         </div>
+        {% endblock %}
 
-        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
-        <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
-
+        {% block scripts %}
+        {{super()}}
         <script type="text/javascript">
             var currTrack = '';
             var playing = false;
@@ -102,13 +89,13 @@
                         $.ajax('/pause');
                         playing = false;
 
-                        $('#pause').html('<i class="icon-play"></i> Play');
+                        $('#pause').html('<span class="glyphicon glyphicon-play" aria-hidden="true"></span> Play');
                     }
                     else {
                         $.ajax('/play');
                         playing = true;
 
-                        $('#pause').html('<i class="icon-pause"></i> Pause');
+                        $('#pause').html('<span class="glyphicon glyphicon-pause" aria-hidden="true"></span> Pause');
                     }
                 });
 
@@ -117,7 +104,7 @@
                     if (mute == true) {
                         $.ajax('/volume_unmute');
                         mute = false;
-                        $('#volume_mute').html('<i class="icon-volume-off"></i> Mute');
+                        $('#volume_mute').html('<span class="glyphicon glyphicon-volume-off" aria-hidden="true"></span> Mute');
                     }
                 });
 
@@ -126,7 +113,7 @@
                     if (mute == true) {
                         $.ajax('/volume_unmute');
                         mute = false;
-                        $('#volume_mute').html('<i class="icon-volume-off"></i> Mute');
+                        $('#volume_mute').html('<span class="glyphicon glyphicon-volume-off" aria-hidden="true"></span> Mute');
                     }
                 });
 
@@ -134,12 +121,12 @@
                     if (mute == true) {
                         $.ajax('/volume_unmute');
                         mute = false;
-                        $('#volume_mute').html('<i class="icon-volume-off"></i> Mute');
+                        $('#volume_mute').html('<span class="glyphicon glyphicon-volume-off" aria-hidden="true"></span> Mute');
                     }
                     else {
                         $.ajax('/volume_mute');
                         mute = true;
-                        $('#volume_mute').html('<i class="icon-volume-off"></i> Unmute');
+                        $('#volume_mute').html('<span class="glyphicon glyphicon-volume-off" aria-hidden="true"></span> Unmute');
                     }
                 });
 
@@ -157,5 +144,4 @@
 
             });
         </script>
-   </body>
-</html>
+        {% endblock %}

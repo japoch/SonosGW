@@ -1,0 +1,43 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block html_attribs %} lang="en"{% endblock %}
+
+{% block title %}
+SoCo - Sonos Web Controller
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+{% endblock %}
+
+{% block navbar %}
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{ url_for('index') }}">SoCO</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <button class="btn btn-default navbar-btn" id="track_01"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> FM4.ORF.AT</button>
+                <button class="btn btn-default navbar-btn" id="track_02"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Radio PSR Live</button>
+                <button class="btn btn-default navbar-btn" id="track_03"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Energy Sachsen</button>
+            </ul>
+        </div>
+    </div>
+</nav>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    {% block app_content %}{% endblock %}
+</div>
+{% endblock %}
