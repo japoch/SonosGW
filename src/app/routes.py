@@ -54,8 +54,8 @@ def get_track_image(artist, album):
 
 def current_track():
     track = sonos.get_current_track_info()
-    track["title"] = track["title"][:40]
-    track["artist"] = track["artist"][:40]
+    track["title"] = track["title"][:30]
+    track["artist"] = track["artist"][:30]
     return track
 
 
