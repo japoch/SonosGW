@@ -2,11 +2,11 @@ import time
 import hashlib
 import json
 import requests
-from flask import render_template, url_for
+from flask import Flask, render_template, url_for
 from soco import SoCo
-from app import app
 
 
+app = Flask(__name__)
 app.config.from_pyfile("settings.py")
 sonos = SoCo(app.config["SPEAKER_IP"])
 
@@ -134,15 +134,15 @@ def info_light():
 def info():
     track = sonos.get_current_track_info()
     track["image"] = get_track_image(track["artist"], track["album"])
-    transport = sonos.get_current_transport_info()
-    track["playing"] = transport["current_transport_state"] != "STOPPED"
-    track["mute"] = sonos.mute
     return json.dumps(track)
 
 
 @app.route("/")
-@app.route('/index')
 def index():
     track = sonos.get_current_track_info()
     track["image"] = get_track_image(track["artist"], track["album"])
     return render_template("index.html", track=track)
+
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port="5000", debug=True)

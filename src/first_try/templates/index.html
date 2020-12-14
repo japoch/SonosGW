@@ -46,7 +46,7 @@
 
         <script type="text/javascript">
             var currTrack = '';
-            var playing = false;
+            var playing = true;
             var mute = false;
 
             function checkChange() {
@@ -69,8 +69,6 @@
                     $('.card').html('<span class="image-wrap card" style="position:relative; display:inline-block; background:url(' + data['image'] + ') no-repeat center center; width: 400px; height: 400px;" /><img style="opacity:0" id="track-image" src="' + data['image'] + '"></span>');
 
                     currTrack = data['title'];
-                    playing = data['playing'];
-                    mute = data['mute'];
                 });
             }
 
