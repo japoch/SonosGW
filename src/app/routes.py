@@ -52,6 +52,13 @@ def get_track_image(artist, album):
         return blank_image
 
 
+def current_track():
+    track = sonos.get_current_track_info()
+    track["title"] = track["title"][:40]
+    track["artist"] = track["artist"][:40]
+    return track
+
+
 @app.route("/play")
 def play():
     sonos.play()
@@ -126,13 +133,13 @@ def track_03():
 
 @app.route("/info-light")
 def info_light():
-    track = sonos.get_current_track_info()
+    track = current_track()
     return json.dumps(track)
 
 
 @app.route("/info")
 def info():
-    track = sonos.get_current_track_info()
+    track = current_track()
     track["image"] = get_track_image(track["artist"], track["album"])
     transport = sonos.get_current_transport_info()
     track["playing"] = transport["current_transport_state"] != "STOPPED"
@@ -143,6 +150,6 @@ def info():
 @app.route("/")
 @app.route('/index')
 def index():
-    track = sonos.get_current_track_info()
+    track = current_track()
     track["image"] = get_track_image(track["artist"], track["album"])
     return render_template("index.html", track=track)
