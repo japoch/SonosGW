@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": "C:\\Python38_64\\python.exe",
+    "python.pythonPath": "d:\\workspaces\\SonosGW\\venv\\Scripts\\python.exe",
     "python.linting.pylintEnabled": true,
     "python.linting.enabled": true,
     "python.linting.pylintArgs": ["--extension-pkg-whitelist=cv2", "--max-line-length=240"]

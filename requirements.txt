@@ -1,3 +1,5 @@
 Flask==1.1.2
 pylint==2.6.0
 soco==0.20
+wheel==0.36.2
+Flask-Bootstrap==3.3.7.1
