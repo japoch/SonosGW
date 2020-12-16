@@ -130,6 +130,7 @@ def track_03():
     sonos.play_uri('http://nrj.de/sachsen', title='Energy Sachsen', force_radio=True)
     return "Ok"
 
+
 @app.route("/track_04")
 def track_04():
     sonos.play_uri('http://stream.sunshine-live.de/live/mp3-192', title='Sunshine Live', force_radio=True)
