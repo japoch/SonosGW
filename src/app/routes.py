@@ -131,6 +131,12 @@ def track_03():
     return "Ok"
 
 
+@app.route("/track_04")
+def track_04():
+    sonos.play_uri('http://stream.sunshine-live.de/live/mp3-192', title='Sunshine Live', force_radio=True)
+    return "Ok"
+
+
 @app.route("/info-light")
 def info_light():
     track = current_track()
