@@ -31,7 +31,8 @@
                 "name": "kalender",
                 "host": "192.168.178.29",
                 "username": "pi",
-                "root": "/home/pi"
+                "root": "/home/pi",
+                "privateKeyPath": "c:\\Users\\Jan\\.ssh\\id_rsa"
             }
         ]
     }
