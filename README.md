@@ -9,5 +9,6 @@ export FLASK_APP=webapp.py
 cd src
 flask run
 
+[SONOS API Documents](https://musicpartners.sonos.com/?q=docs "API Documents & Tools")
 
 [Stream What You Hear](https://www.streamwhatyouhear.com/ "Stream the sound from your PC to an UPnP/DLNA device")
