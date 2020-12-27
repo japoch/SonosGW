@@ -4,8 +4,8 @@ from soco import SoCo, discover
 if __name__ == '__main__':
     for zone in discover():
         print(f'Playername={zone.player_name} IP={zone.ip_address}')
-
-    sonos = SoCo(zone.ip_address)
+        sonos = SoCo(zone.ip_address)
+        break
 
     #print(f'Shares={sonos.music_library.list_library_shares()}')
     #albums = sonos.music_library.get_music_library_information('playlists')
@@ -14,22 +14,20 @@ if __name__ == '__main__':
     #sonos.play_uri('http://192.168.178.39:5901/stream/swyh.mp3')
     #sonos.play_uri('http://ia801402.us.archive.org/20/items/TenD2005-07-16.flac16/TenD2005-07-16t10Wonderboy.mp3')
     # FM4.ORF.AT
-    sonos.play_uri('http://mp3stream1.apasf.apa.at:8000', title='FM4', force_radio=True)
-
-    track = sonos.get_current_track_info()
-    print(f'URI={track["uri"]}')
+    #sonos.play_uri('http://mp3stream1.apasf.apa.at:8000', title='FM4', force_radio=True)
 
     #sonos.pause()
-    sonos.play()
+    #sonos.play()
 
-    sonos.volume = 45
-    sonos.bass = 0
-    sonos.treble = 0
-    sonos.status_light = True
+    #sonos.volume = 45
+    #sonos.bass = 0
+    #sonos.treble = 0
+    #sonos.status_light = True
     print(f'Volume={sonos.volume}')
     print(f'Bass={sonos.bass}')
     print(f'Treble={sonos.treble}')
     info = sonos.get_current_track_info()
+    print(f'URI={info["uri"]}')
     print(f'Position={info["position"]}')
 
     parser = etree.XMLParser(remove_blank_text=True, ns_clean=True)

@@ -1,44 +1,77 @@
-{% extends 'bootstrap/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block html_attribs %} lang="en"{% endblock %}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-{% block title %}
-SoCo - Sonos Web Controller
-{% endblock %}
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}"> -->
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.css"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-4.5.3.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/open-iconic-bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dark-mode.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 
-{% block styles %}
-{{super()}}
-<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-{% endblock %}
+    <title>SoCo - Sonos Web Controller</title>
+</head>
 
-{% block navbar %}
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="{{ url_for('index') }}">SoCo</a>
-        </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <button class="btn btn-default navbar-btn" id="track_01"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> FM4.ORF.AT</button>
-                <button class="btn btn-default navbar-btn" id="track_02"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Radio PSR Live</button>
-                <button class="btn btn-default navbar-btn" id="track_03"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Energy Sachsen</button>
-                <button class="btn btn-default navbar-btn" id="track_04"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Sunshine Live</button>
+<body class="container-fluid">
+
+    {% block navbar %}
+    {% if True %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">SoCo</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Streams
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <button type="button" class="dropdown-item btn" id="track_01">FM4.ORF.AT</button>
+                        <button type="button" class="dropdown-item btn" id="track_02">Radio PSR Live</button>
+                        <button type="button" class="dropdown-item btn" id="track_03">Energy Sachsen</button>
+                        <button type="button" class="dropdown-item btn" id="track_04">Sunshine Live</button>
+                        <div class="dropdown-divider"></div>
+                        <button type="button" class="dropdown-item btn" id="track_99">Something else here</button>
+                    </div>
+                </li>
             </ul>
         </div>
-    </div>
-</nav>
-{% endblock %}
 
-{% block content %}
-<div class="container-fluid">
-    {% block app_content %}{% endblock %}
-</div>
-{% endblock %}
+        <div class="nav justify-content-center float-right">
+            <div class="nav-link">
+                <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" id="darkSwitch" />
+                    <label class="custom-control-label" for="darkSwitch">Dark Mode</label>
+                </div>
+            </div>
+        </div>
+    </nav>
+    {% endif %}
+    {% endblock %}
+
+    {% block content %}
+    <div class="container-fluid">
+        {% block app_content %}{% endblock %}
+    </div>
+    {% endblock %}
+
+    {% block scripts %}
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.5.1.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/popper-1.16.1.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap-4.5.3.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/dark-mode-switch.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/play-functions.js') }}"></script>
+    {% endblock %}
+
+</body>
+
+</html>
