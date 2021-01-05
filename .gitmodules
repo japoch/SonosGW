@@ -4,3 +4,9 @@
 [submodule "submodules/dark-mode-switch"]
 	path = submodules/dark-mode-switch
 	url = https://github.com/coliff/dark-mode-switch.git
+[submodule "submodules/kodinerds-iptv"]
+	path = submodules/kodinerds-iptv
+	url = https://github.com/jnk22/kodinerds-iptv.git
+[submodule "submodules/iptv-channels"]
+	path = submodules/iptv-channels
+	url = https://github.com/iptv-restream/iptv-channels.git
