@@ -1,4 +1,6 @@
-Flask==1.1.2
-pylint==2.6.0
-soco==0.20
-wheel==0.36.2
+Flask==2.2.3
+pylint==2.17.2
+soco==0.29.1
+wheel==0.40.0
+python_dotenv==1.0.0
+gunicorn==20.1.0

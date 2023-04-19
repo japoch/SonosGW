@@ -1,10 +1,12 @@
-import time
+""" @brief docstring
+"""
 import hashlib
 import json
+import time
+
 import requests
 from flask import Flask, render_template, url_for
 from soco import SoCo
-
 
 app = Flask(__name__)
 app.config.from_pyfile("settings.py")
@@ -25,7 +27,7 @@ def get_track_image(artist, album):
     blank_image = url_for("static", filename="img/blank.jpg")
     if "ROVI_SHARED_SECRET" not in app.config:
         return blank_image
-    elif "ROVI_API_KEY" not in app.config:
+    if "ROVI_API_KEY" not in app.config:
         return blank_image
 
     headers = {"Accept-Encoding": "gzip"}
@@ -40,6 +42,7 @@ def get_track_image(artist, album):
         + artist
         + "&include=images&size=1",
         headers=headers,
+        timeout=30,
     )
 
     if req.status_code != requests.codes.ok:
@@ -64,8 +67,8 @@ def pause():
     return "Ok"
 
 
-@app.route("/next")
-def next():
+@app.route("/forward")
+def forward():
     sonos.next()
     return "Ok"
 
@@ -78,8 +81,8 @@ def previous():
 
 @app.route("/volume")
 def volume():
-    volume = sonos.volume
-    return volume
+    vol = sonos.volume
+    return vol
 
 
 @app.route("/volume_up")
@@ -108,19 +111,19 @@ def volume_unmute():
 
 @app.route("/track_01")
 def track_01():
-    sonos.play_uri('http://mp3stream1.apasf.apa.at:8000', title='FM4.ORF.AT', force_radio=True)
+    sonos.play_uri("http://mp3stream1.apasf.apa.at:8000", title="FM4.ORF.AT", force_radio=True)
     return "Ok"
 
 
 @app.route("/track_02")
 def track_02():
-    sonos.play_uri('http://streams.radiopsr.de/psr-live/mp3-192/mediaplayer', title='Radio PSR Live', force_radio=True)
+    sonos.play_uri("http://streams.radiopsr.de/psr-live/mp3-192/mediaplayer", title="Radio PSR Live", force_radio=True)
     return "Ok"
 
 
 @app.route("/track_03")
 def track_03():
-    sonos.play_uri('http://nrj.de/sachsen', title='Energy Sachsen', force_radio=True)
+    sonos.play_uri("http://nrj.de/sachsen", title="Energy Sachsen", force_radio=True)
     return "Ok"
 
 

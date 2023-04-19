@@ -1,6 +1,6 @@
 [submodule "submodules/SoCo"]
-	path = submodules/SoCo
-	url = https://github.com/SoCo/SoCo.git
+  path = submodules/SoCo
+  url = https://github.com/SoCo/SoCo.git
 [submodule "submodules/dark-mode-switch"]
-	path = submodules/dark-mode-switch
-	url = https://github.com/coliff/dark-mode-switch.git
+  path = submodules/dark-mode-switch
+  url = https://github.com/coliff/dark-mode-switch.git
