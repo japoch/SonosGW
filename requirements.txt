@@ -1,4 +1,4 @@
-Flask==2.2.3
+Flask==2.3.2
 pylint==2.17.2
 soco==0.29.1
 wheel==0.40.0
