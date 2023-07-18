@@ -3,4 +3,4 @@ pylint==2.17.2
 soco==0.29.1
 wheel==0.40.0
 python_dotenv==1.0.0
-gunicorn==20.1.0
+gunicorn==21.0.1
